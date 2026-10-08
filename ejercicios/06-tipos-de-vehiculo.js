@@ -32,16 +32,50 @@
 // Pista: reporte() se escribe UNA sola vez, en Vehiculo.
 // ============================================================
 
+//1. Completa la clase Vehiculo:
+//      constructor(placa, pasajeros) → guarda this.placa y this.pasajeros
+//      tarifa()  → retorna 2950 (la tarifa base)
+//      reporte() → retorna este texto EXACTO:
+//        "<placa> | <pasajeros> pasajeros | Tarifa: $<tarifa>"
+//        (la tarifa se obtiene LLAMANDO a this.tarifa())
+
 class Vehiculo {
   // Tu código aquí
+  constructor (placa, pasajeros) {
+    this.placa = placa;
+    this.pasajeros = pasajeros;
+  }
+
+  tarifa(){
+    return 2950
+  }
+
+  reporte(){
+    return `${this.placa} | ${this.pasajeros} pasajeros | Tarifa: $${this.tarifa()}`
+  }
 }
 
-class Alimentador {
+class Alimentador extends Vehiculo{
   // Tu código aquí
+  tarifa (){
+    return 0;
+  }
 }
 
-class BusDual {
+class BusDual extends Vehiculo{
   // Tu código aquí
+  constructor(placa, pasajeros, esElectrico = true || false){
+    super (placa, pasajeros)
+    this.esElectrico = esElectrico; 
+  }
+
+  tarifa(){
+    if (this.esElectrico === true){
+      return 2500;
+    }
+    return 3200;
+  }
+
 }
 
 // No borres esta línea: es la puerta por donde el test usa tus clases
